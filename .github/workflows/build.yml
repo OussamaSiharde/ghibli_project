@@ -1,0 +1,19 @@
+name: Build & Test
+
+on:
+  push:
+    branches_ignore:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build the docker-compose stack
+      run: docker-compose build
+    - name: Test code format -- pre-commit
+      run: make lint
+    - name: Run test suite
+      run: make test
