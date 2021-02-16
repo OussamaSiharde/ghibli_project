@@ -9,6 +9,7 @@ logger = logging.getLogger("celery")
 
 @shared_task
 def sync_data():
+    logger.info("sync_data running")
     get_and_save_movies.apply_async()
     get_and_save_people.apply_async()
 

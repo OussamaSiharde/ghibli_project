@@ -2,7 +2,6 @@ import os
 import sys
 
 from gettext import gettext
-from celery.schedules import crontab
 
 import dj_database_url
 
@@ -207,10 +206,7 @@ CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
 
 CELERY_BEAT_SCHEDULE = {
-    "sync_data": {
-        "task": "ghibli_core.movie.tasks.sync_data",
-        "schedule": crontab(hour=0, minute="*/1"),
-    }
+    "sync_data": {"task": "ghibli_core.movie.tasks.sync_data", "schedule": 60,}
 }
 
 # Django-Templates
